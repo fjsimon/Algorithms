@@ -1,4 +1,4 @@
-package Sorting;
+package sorting;
 
 /*************************************************************************
  *  Compilation:  javac QuickSort.java
