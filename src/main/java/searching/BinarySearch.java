@@ -1,6 +1,12 @@
 package searching;
 
-
+/**
+ *
+ * Info:
+ *
+ * http://www.geeksforgeeks.org/binary-search/
+ *
+ */
 public class BinarySearch {
 
     private BinarySearch() {}
