@@ -61,11 +61,11 @@ public class BinarySearch {
         }
     }
 
-    private static <T> boolean less(Comparable<T> v, Comparable<T> w){
+    private static <T> boolean less(Comparable<T> v, Comparable<T> w) {
         return v.compareTo((T) w) < 0;
     }
 
-    private static <T> boolean more(Comparable<T> v, Comparable<T> w){
+    private static <T> boolean more(Comparable<T> v, Comparable<T> w) {
         return v.compareTo((T) w) > 0;
     }
 }

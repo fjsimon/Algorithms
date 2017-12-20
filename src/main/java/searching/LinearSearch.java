@@ -5,6 +5,8 @@ package searching;
  */
 public class LinearSearch {
 
+    private LinearSearch() {}
+
     // This function returns index of element x in arr[]
     public static <T> int search(Comparable<T> arr[], int n, Comparable<T> x) {
 
