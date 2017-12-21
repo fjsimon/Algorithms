@@ -24,8 +24,7 @@ public class BinarySearch {
         return -1;
     }
 
-    public static <T> int binarySearchIteratively(
-            Comparable<T>[] sortedArray, Comparable<T> key, int low, int high) {
+    public static <T> int binarySearchIteratively(Comparable<T>[] sortedArray, Comparable<T> key, int low, int high) {
 
         int index = Integer.MAX_VALUE;
 
@@ -43,8 +42,7 @@ public class BinarySearch {
         return index;
     }
 
-    public static <T> int binarySearchRecursively(
-            Comparable<T> [] sortedArray, Comparable<T> key, int low, int high) {
+    public static <T> int binarySearchRecursively(Comparable<T> [] sortedArray, Comparable<T> key, int low, int high) {
 
         int middle = (low + high) / 2;
 
