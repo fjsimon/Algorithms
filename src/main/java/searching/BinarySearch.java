@@ -50,12 +50,12 @@ public class BinarySearch {
             return -1;
         }
 
-        if (key == sortedArray[middle]) {
-            return middle;
-        } else if (less(key, sortedArray[middle])) {
+        if (less(key, sortedArray[middle])) {
             return binarySearchRecursively(sortedArray, key, low, middle - 1);
-        } else {
+        } else if (more(key, sortedArray[middle])) {
             return binarySearchRecursively(sortedArray, key, middle + 1, high);
+        } else {
+            return middle;
         }
     }
 

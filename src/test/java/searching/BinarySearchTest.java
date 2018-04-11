@@ -10,7 +10,7 @@ import static org.junit.Assert.assertThat;
 
 public class BinarySearchTest {
 
-    private static int N = 100000;
+    private static int N = 1000;
 
     @Test
     public void binarySearchTest() {
@@ -33,7 +33,7 @@ public class BinarySearchTest {
 
         Arrays.sort(array);
 
-        assertThat(BinarySearch.binarySearchIteratively(array, array[100], 0, 5), is(not(-1)));
+        assertThat(BinarySearch.binarySearchIteratively(array, array[100], 0, N-1), is(not(-1)));
     }
 
     @Test
@@ -45,6 +45,6 @@ public class BinarySearchTest {
 
         Arrays.sort(array);
 
-        assertThat(BinarySearch.binarySearchRecursively(array, array[100], 0, 5), is(not(-1)));
+        assertThat(BinarySearch.binarySearchRecursively(array, array[100], 0, N-1), is(not(-1)));
     }
 }

@@ -49,7 +49,7 @@ public class BCryptTest {
             }
             hashList.add(hash);
             i++;
-        } while (i < 100);
+        } while (i < 10);
     }
 
 
