@@ -30,8 +30,8 @@ Each of the next t pairs of lines are as follows:
 
 ### Subtasks
 
-For 60% score 1 <= n < 10^3
-For 100% score 1<= n <= 10^5
+* For 60% score 1 <= n < 10^3
+* For 100% score 1<= n <= 10^5
 
 ### Sample Input
 
