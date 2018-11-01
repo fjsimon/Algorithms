@@ -43,10 +43,10 @@ Each of the next  lines contains three space-separated integers ,  and , the lef
 
 ### Constraints
 
-3 <= n <= 10^7
-1 <= m <= 2 * 10^5
-1 <= a <= b <= n
-0 <= k <= 10^9
+* 3 <= n <= 10^7
+* 1 <= m <= 2 * 10^5
+* 1 <= a <= b <= n
+* 0 <= k <= 10^9
 
 ### Output Format
 
