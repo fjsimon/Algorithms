@@ -1,4 +1,4 @@
-package HackerRank.Sorting;
+package HackerRank.Sorting.MarkAndToys;
 
 import java.io.*;
 import java.util.*;
