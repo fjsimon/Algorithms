@@ -83,7 +83,7 @@ The client spends 5 dollars, which does not trigger a notification because 5 < 2
 1 2 3 4 4
 ```
 
-###Sample Output 1
+### Sample Output 1
 
 ```
 0
