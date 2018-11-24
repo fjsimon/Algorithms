@@ -5,14 +5,18 @@ import java.util.*;
 
 public class FraudulentActivityNotifications {
 
+    private static void update(int[] freq, Queue<Integer> q, int elem) {
+        q.add(elem);
+        freq[elem] += 1;
+    }
+
     static int activityNotifications(int[] expenditure, int d) {
         int count = 0;
         int freq[] = new int[201];
         Queue<Integer> q = new LinkedList<>();
         for(int i = 0; i < expenditure.length; i++) {
             while (i < d) {
-                q.add(expenditure[i]);
-                freq[expenditure[i]] += 1;
+                update(freq, q, expenditure[i]);
                 i++;
             }
 
@@ -23,8 +27,7 @@ public class FraudulentActivityNotifications {
 
             int elem = q.remove();
             freq[elem] -= 1;
-            q.add(expenditure[i]);
-            freq[expenditure[i]] += 1;
+            update(freq, q, expenditure[i]);
         }
 
         return count;
