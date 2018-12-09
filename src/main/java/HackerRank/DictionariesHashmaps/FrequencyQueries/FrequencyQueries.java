@@ -12,34 +12,23 @@ public class FrequencyQueries {
         final Map<Integer, Integer> freqToOccurrence = new HashMap<>();
         final List<Integer> frequencies = new ArrayList<>();
 
-        int key;
-        int value;
-        Integer oldFreq;
-        Integer newFreq;
-        Integer oldOccurrence;
-        Integer newOccurrence;
+        int key, value;
+        Integer oldFreq, newFreq;
+        Integer oldOccurrence, newOccurrence;
         for (int[] query : queries) {
             key = query[0];
             value = query[1];
             if (key == 3) {
-                if (value == 0) {
-                    frequencies.add(1);
-                }
                 frequencies.add(freqToOccurrence.get(value) == null ? 0 : 1);
             } else {
-                oldFreq = valueToFreq.get(value);
-                oldFreq = oldFreq == null ? 0 : oldFreq;
-                oldOccurrence = freqToOccurrence.get(oldFreq);
-                oldOccurrence = oldOccurrence == null ? 0 : oldOccurrence;
-
+                oldFreq = valueToFreq.containsKey(value) ? valueToFreq.get(value) : 0;
+                oldOccurrence = freqToOccurrence.containsKey(oldFreq) ? freqToOccurrence.get(oldFreq) : 0;
                 if (key == 1) {
                     newFreq = oldFreq + 1;
                 } else {
                     newFreq = oldFreq - 1;
                 }
-                newOccurrence = freqToOccurrence.get(newFreq);
-                newOccurrence = newOccurrence == null ? 0 : newOccurrence;
-
+                newOccurrence = freqToOccurrence.containsKey(newFreq) ? freqToOccurrence.get(newFreq) : 0;
                 if (newFreq < 1) {
                     valueToFreq.remove(value);
                 } else {
