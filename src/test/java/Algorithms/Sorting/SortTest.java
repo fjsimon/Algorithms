@@ -1,8 +1,8 @@
 package Algorithms.Sorting;
 
 import org.junit.Test;
-import sorting.HeapSort;
-import sorting.QuickSort;
+import Sorting.HeapSort;
+import Sorting.QuickSort;
 
 import static junit.framework.TestCase.assertEquals;
 
