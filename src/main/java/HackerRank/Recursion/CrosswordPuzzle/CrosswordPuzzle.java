@@ -7,6 +7,7 @@ import java.util.stream.IntStream;
 public class CrosswordPuzzle {
 
     static final int SIZE = 10;
+    static List<Space> spaces;
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -19,6 +20,7 @@ public class CrosswordPuzzle {
             }
         }
         String[] words = sc.next().split(";");
+        spaces = findSpaces(grid);
 
         char[][] solution = solve(grid, words);
         IntStream.range(0, SIZE).forEach(r -> System.out.println(String.valueOf(solution[r])));
@@ -41,16 +43,16 @@ public class CrosswordPuzzle {
             return search(grid, remainWords, r, c + 1, 0);
         }
 
-        int insertLength = getInsertLength(grid, r, c, direction);
-        if (insertLength > 1) {
-            for (String remainWord : remainWords.stream().filter(rw -> rw.length() == insertLength).collect(Collectors.toList())) {
+        int spaceLength = getSpaceLength(r, c, direction);
+        if (spaceLength > 1) {
+            for (String remainWord : remainWords.stream().filter(remain -> remain.length() == spaceLength).collect(Collectors.toList())) {
                 if (canInsert(grid, r, c, direction, remainWord)) {
-                    insert(grid, remainWords, r, c, direction, insertLength, remainWord);
+                    insert(grid, remainWords, r, c, direction, remainWord);
                     char[][] subResult = search(grid, remainWords, r, c, direction + 1);
                     if (subResult != null) {
                         return subResult;
                     }
-                    revert(grid, remainWords, r, c, direction, insertLength, remainWord);
+                    revert(grid, remainWords, r, c, direction, remainWord);
                 }
             }
             return null;
@@ -59,9 +61,9 @@ public class CrosswordPuzzle {
         }
     }
 
-    private static void revert(char[][] grid, Set<String> remainWords, int r, int c, int direction, int insertLength, String remainWord) {
+    private static void revert(char[][] grid, Set<String> remainWords, int r, int c, int direction, String remainWord) {
 
-        for (int insertOffset = 0; insertOffset < insertLength; insertOffset++) {
+        for (int insertOffset = 0; insertOffset < remainWord.length(); insertOffset++) {
             int insertR = r + (direction % 2) * insertOffset;
             int insertC = c + ((direction + 1) % 2) * insertOffset;
             grid[insertR][insertC] = '-';
@@ -69,9 +71,9 @@ public class CrosswordPuzzle {
         remainWords.add(remainWord);
     }
 
-    private static void insert(char[][] grid, Set<String> remainWords, int r, int c, int direction, int insertLength, String remainWord) {
+    private static void insert(char[][] grid, Set<String> remainWords, int r, int c, int direction, String remainWord) {
 
-        for (int insertOffset = 0; insertOffset < insertLength; insertOffset++) {
+        for (int insertOffset = 0; insertOffset < remainWord.length(); insertOffset++) {
             int insertR = r + (direction % 2) * insertOffset;
             int insertC = c + ((direction + 1) % 2) * insertOffset;
             grid[insertR][insertC] = remainWord.charAt(insertOffset);
@@ -79,22 +81,16 @@ public class CrosswordPuzzle {
         remainWords.remove(remainWord);
     }
 
-    static int getInsertLength(char[][] grid, int r, int c, int direction) {
-        int prevR = r - (direction % 2);
-        int prevC = c - ((direction + 1) % 2);
+    static int getSpaceLength(int r, int c, int direction) {
+        Optional<Space> space = spaces.stream()
+                .filter(s -> s.row == r && s.column == c && s.direction == direction)
+                .findAny();
 
-        if (prevR >= 0 && prevR < SIZE && prevC >= 0 && prevC < SIZE && grid[prevR][prevC] != '+') {
+        if(space.isPresent()) {
+            return space.get().length;
+        }else{
             return 0;
         }
-
-        int insertLength = 0;
-        while (r >= 0 && r < SIZE && c >= 0 && c < SIZE && grid[r][c] != '+') {
-            insertLength++;
-
-            r += (direction % 2);
-            c += ((direction + 1) % 2);
-        }
-        return insertLength;
     }
 
     static boolean canInsert(char[][] grid, int r, int c, int direction, String word) {
@@ -103,5 +99,57 @@ public class CrosswordPuzzle {
             int insertC = c + ((direction + 1) % 2) * insertOffset;
             return grid[insertR][insertC] == '-' || grid[insertR][insertC] == word.charAt(insertOffset);
         });
+    }
+
+    static List<Space> findSpaces(char[][] grid) {
+
+        List<Space> spaceList = new ArrayList();
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                if (grid[i][j] == '-') {
+                    int row = i;
+                    int column = j;
+                    int length = 1;
+                    while (++j < SIZE && grid[i][j] == '-')
+                        length++;
+                    if (length > 1) {
+                        spaceList.add(new Space(row, column, 0, length));
+                    }
+                }
+            }
+        }
+
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                if (grid[j][i] == '-') {
+                    int row = j;
+                    int column = i;
+                    int length = 1;
+                    while (++j < SIZE && grid[j][i] == '-')
+                        length++;
+
+                    if (length > 1) {
+                        spaceList.add(new Space(row, column, 1, length));
+                    }
+                }
+
+            }
+        }
+        return spaceList;
+    }
+
+    static class Space {
+
+        int row;
+        int column;
+        int direction;
+        int length;
+
+        public Space(int row, int column, int direction, int length) {
+            this.row = row;
+            this.column = column;
+            this.length = length;
+            this.direction = direction;
+        }
     }
 }
