@@ -105,37 +105,34 @@ public class CrosswordPuzzle {
 
         List<Space> spaceList = new ArrayList();
         for (int i = 0; i < SIZE; i++) {
-            for (int j = 0; j < SIZE; j++) {
-                if (grid[i][j] == '-') {
-                    int row = i;
-                    int column = j;
-                    int length = 1;
-                    while (++j < SIZE && grid[i][j] == '-')
-                        length++;
-                    if (length > 1) {
-                        spaceList.add(new Space(row, column, 0, length));
-                    }
-                }
-            }
-        }
-
-        for (int i = 0; i < SIZE; i++) {
-            for (int j = 0; j < SIZE; j++) {
-                if (grid[j][i] == '-') {
-                    int row = j;
-                    int column = i;
-                    int length = 1;
-                    while (++j < SIZE && grid[j][i] == '-')
-                        length++;
-
-                    if (length > 1) {
-                        spaceList.add(new Space(row, column, 1, length));
-                    }
-                }
-
-            }
+            addHorizontalSpaces(grid, i, spaceList);
+            addVerticalSpaces(grid, i, spaceList);
         }
         return spaceList;
+    }
+
+    static void addHorizontalSpaces(char[][] grid, int row, List<Space> spaceList) {
+
+        for (int j = 0; j < SIZE; j++) {
+            if (grid[row][j] == '-') {
+                int column = j;
+                int length = 1;
+                while (++j < SIZE && grid[row][j] == '-') length++;
+                if (length > 1) spaceList.add(new Space(row, column, 0, length));
+            }
+        }
+    }
+
+    static void addVerticalSpaces(char[][] grid, int column, List<Space> spaceList) {
+
+        for (int j = 0; j < SIZE; j++) {
+            if (grid[j][column] == '-') {
+                int row = j;
+                int length = 1;
+                while (++j < SIZE && grid[j][column] == '-') length++;
+                if (length > 1) spaceList.add(new Space(row, column, 1, length));
+            }
+        }
     }
 
     static class Space {
