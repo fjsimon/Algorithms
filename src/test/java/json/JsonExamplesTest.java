@@ -2,12 +2,11 @@ package json;
 
 import com.jayway.jsonpath.JsonPath;
 import net.minidev.json.JSONArray;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static com.jayway.jsonassert.JsonAssert.with;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.*;
-
 
 public class JsonExamplesTest {
 

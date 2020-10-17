@@ -1,12 +1,12 @@
 package Graph.ConnectedNodesProblem;
 
-import org.junit.Test;
+import org.hamcrest.Matcher;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
 
 public class ConnexionDelegateTest {
 
@@ -30,6 +30,9 @@ public class ConnexionDelegateTest {
 
         Integer count = new ConnexionDelegate().findConnexions(0, nodeList);
         assertThat(count, is(5));
+    }
+
+    private void assertThat(Integer count, Matcher<Integer> integerMatcher) {
     }
 
     @Test

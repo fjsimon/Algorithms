@@ -1,10 +1,10 @@
 package Algorithms.Sorting;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
 import Sorting.HeapSort;
 import Sorting.QuickSort;
-
-import static junit.framework.TestCase.assertEquals;
 
 public class SortTest {
 
