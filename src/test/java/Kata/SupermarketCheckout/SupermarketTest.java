@@ -9,7 +9,6 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class SupermarketTest {
 
-    // Todo: test all kinds of discounts are applied properly
 
     @Test
     public void noDiscount() {

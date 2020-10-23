@@ -1,14 +1,18 @@
 package Kata.SupermarketCheckout;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import Kata.SupermarketCheckout.processor.*;
+import java.util.*;
 
 public class ShoppingCart {
 
     private final List<ProductQuantity> items = new ArrayList<>();
     Map<Product, Double> productQuantities = new HashMap<>();
+    List<OfferChecker> offerCheckerList = Arrays.asList(
+            new ThreeForTwoOfferChecker(),
+            new TwoForAmountOfferChecker(),
+            new FiveForAmountOfferChecker(),
+            new TenPercentDiscountOfferChecker()
+    );
 
     List<ProductQuantity> getItems() {
         return new ArrayList<>(items);
@@ -37,32 +41,14 @@ public class ShoppingCart {
             double quantity = productQuantities.get(p);
             if (offers.containsKey(p)) {
 
-                Offer offer = offers.get(p);
-                double unitPrice = catalog.getUnitPrice(p);
-                int quantityAsInt = (int) quantity;
+                Request request = Request.builder()
+                        .offer(offers.get(p))
+                        .unitPrice(catalog.getUnitPrice(p))
+                        .quantity(quantity)
+                        .build();
 
-                if (offer.offerType == SpecialOfferType.ThreeForTwo) {
-
-                    double discountTotal = quantity * unitPrice - (( (quantityAsInt / 3) * 2 * unitPrice) + quantityAsInt % 3 * unitPrice);
-                    receipt.addDiscount(new Discount(p,"3 for 2", -discountTotal));
-                }
-
-                if (offer.offerType == SpecialOfferType.TwoForAmount && quantityAsInt >= 2) {
-
-                    double discountTotal = unitPrice * quantity - (offer.argument * (quantityAsInt / 2) + quantityAsInt % 2 * unitPrice);
-                    receipt.addDiscount(new Discount(p,"2 for " + offer.argument, -discountTotal));
-                }
-
-                if (offer.offerType == SpecialOfferType.FiveForAmount && quantityAsInt >= 5) {
-
-                    double discountTotal = unitPrice * quantity - (offer.argument * (quantityAsInt / 5) + quantityAsInt % 5 * unitPrice);
-                    receipt.addDiscount(new Discount(p,"5 for " + offer.argument, -discountTotal));
-                }
-
-                if (offer.offerType == SpecialOfferType.TenPercentDiscount) {
-
-                    double discountTotal = quantity * unitPrice * offer.argument / 100.0;
-                    receipt.addDiscount(new Discount(p, offer.argument + "% off", -discountTotal));
+                for( OfferChecker offerChecker : offerCheckerList ) {
+                    offerChecker.check(receipt, request);
                 }
             }
         }
