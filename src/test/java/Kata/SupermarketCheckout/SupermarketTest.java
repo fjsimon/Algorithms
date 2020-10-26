@@ -1,5 +1,6 @@
 package Kata.SupermarketCheckout;
 
+import Kata.SupermarketCheckout.model.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collections;

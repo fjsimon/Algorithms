@@ -1,7 +1,7 @@
 package Kata.SupermarketCheckout.processor;
 
-import Kata.SupermarketCheckout.Receipt;
-import Kata.SupermarketCheckout.Request;
+import Kata.SupermarketCheckout.model.Receipt;
+import Kata.SupermarketCheckout.model.Request;
 
 public interface OfferChecker {
 

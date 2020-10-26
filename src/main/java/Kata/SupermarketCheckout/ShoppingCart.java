@@ -1,5 +1,6 @@
 package Kata.SupermarketCheckout;
 
+import Kata.SupermarketCheckout.model.*;
 import Kata.SupermarketCheckout.processor.*;
 import java.util.*;
 

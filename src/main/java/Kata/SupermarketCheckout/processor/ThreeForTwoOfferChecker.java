@@ -1,6 +1,6 @@
 package Kata.SupermarketCheckout.processor;
 
-import Kata.SupermarketCheckout.*;
+import Kata.SupermarketCheckout.model.*;
 
 public class ThreeForTwoOfferChecker implements OfferChecker {
 

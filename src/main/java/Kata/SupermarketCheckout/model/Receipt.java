@@ -1,6 +1,9 @@
-package Kata.SupermarketCheckout;
+package Kata.SupermarketCheckout.model;
 
 
+import Kata.SupermarketCheckout.model.Discount;
+import Kata.SupermarketCheckout.model.Product;
+import Kata.SupermarketCheckout.model.ReceiptItem;
 import lombok.Getter;
 
 import java.util.ArrayList;

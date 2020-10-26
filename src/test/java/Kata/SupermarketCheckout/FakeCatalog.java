@@ -1,5 +1,7 @@
 package Kata.SupermarketCheckout;
 
+import Kata.SupermarketCheckout.model.Product;
+
 import java.util.HashMap;
 import java.util.Map;
 
