@@ -1,12 +1,13 @@
-package Kata.SupermarketCheckout.model;
+package Kata.supermarket.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class ProductQuantity {
+public class Offer {
 
+    SpecialOfferType offerType;
     private final Product product;
-    private final double quantity;
+    double argument;
 }

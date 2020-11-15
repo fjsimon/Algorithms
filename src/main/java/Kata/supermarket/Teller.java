@@ -1,6 +1,6 @@
-package Kata.SupermarketCheckout;
+package Kata.supermarket;
 
-import Kata.SupermarketCheckout.model.*;
+import Kata.supermarket.model.*;
 
 import java.util.HashMap;
 import java.util.List;

@@ -1,4 +1,4 @@
-package Kata.SupermarketCheckout.model;
+package Kata.supermarket.model;
 
 public enum ProductUnit {
     Kilo, Each

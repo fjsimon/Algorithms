@@ -1,6 +1,5 @@
-package Kata.SupermarketCheckout.model;
+package Kata.supermarket.model;
 
-import Kata.SupermarketCheckout.model.Offer;
 import lombok.Builder;
 import lombok.Getter;
 

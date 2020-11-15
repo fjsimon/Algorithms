@@ -1,7 +1,7 @@
-package Kata.SupermarketCheckout;
+package Kata.supermarket;
 
-import Kata.SupermarketCheckout.model.*;
-import Kata.SupermarketCheckout.processor.*;
+import Kata.supermarket.model.*;
+import Kata.supermarket.processor.*;
 import java.util.*;
 
 public class ShoppingCart {

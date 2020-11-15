@@ -1,4 +1,4 @@
-package Kata.SupermarketCheckout.model;
+package Kata.supermarket.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
