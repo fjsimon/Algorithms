@@ -3,12 +3,12 @@ package HackerRank.StacksAndQueues.PoisonousPlants;
 import java.io.*;
 import java.util.*;
 import java.util.stream.*;
+
 import static java.util.stream.Collectors.toList;
 
 /**
  * https://www.hackerrank.com/challenges/poisonous-plants/problem?
- *  h_l=interview&playlist_slugs%5B%5D=interview-preparation-kit&playlist_slugs%5B%5D=stacks-queues
- *
+ * h_l=interview&playlist_slugs%5B%5D=interview-preparation-kit&playlist_slugs%5B%5D=stacks-queues
  */
 class Result {
 
@@ -20,9 +20,24 @@ class Result {
      */
 
     public static int poisonousPlants(List<Integer> p) {
-        // Write your code here
 
-        return 0;
+        int maxDays = 0;
+        Stack<Integer> stack = new Stack<>();
+        for (int index = p.size() - 1; index > 0; index--) {
+            final int curPlant = p.get(index);
+            int currentCount = 0;
+            while (!stack.isEmpty() && stack.peek() > curPlant) {
+                // top of stack dies
+                stack.pop();
+                ++currentCount;
+            }
+            if (currentCount > maxDays) {
+                maxDays = currentCount;
+            }
+            stack.push(curPlant);
+        }
+
+        return maxDays;
     }
 
 }
