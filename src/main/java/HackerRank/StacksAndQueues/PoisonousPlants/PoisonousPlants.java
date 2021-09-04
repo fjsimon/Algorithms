@@ -40,6 +40,76 @@ class Result {
         return maxDays;
     }
 
+    static int poisonousPlants2(List<Integer> p) {
+
+        List<List<Integer>> allstacks = new ArrayList<>();
+
+        int flag = p.get(0);
+        List<Integer> ll = new ArrayList<>();
+        ll.add(p.get(0));
+        allstacks.add(ll);
+
+        for (int j = 1; j < p.size(); j++) {
+            int i = p.get(j);
+            if (i <= flag)
+                ll.add(i);
+            else {
+                ll = new ArrayList<>();
+                ll.add(i);
+                allstacks.add(ll);
+            }
+            flag = i;
+        }
+
+        int day = 0;
+        boolean index;
+
+        do {
+            day++;
+            index = false;
+            for (int i = allstacks.size() - 1; i > 0; i--) {
+                List<Integer> current = allstacks.get(i);
+                current.remove(0);
+
+                List<Integer> before = allstacks.get(i - 1);
+
+                if (current.size() == 0)
+                    allstacks.remove(i);
+                else if (current.get(0) <= before.get(before.size() - 1)) {
+                    before.addAll(current);
+                    allstacks.remove(i);
+                }
+                index = true;
+            }
+        } while (index);
+
+        return day - 1;
+
+    }
+
+    /**
+     * Passed
+     */
+    public static int poisonousPlants3(List<Integer> plants) {
+        int maxDays = 0, day = 0;
+        Stack<int[]> stack = new Stack<>();
+
+        for (int pes : plants) {
+            day = 0;
+            while (!stack.isEmpty() && stack.peek()[0] >= pes) {
+                day = Math.max(day, stack.pop()[1]);
+            }
+            if (!stack.isEmpty()) {
+                day++;
+            } else {
+                day = 0;
+            }
+            maxDays = Math.max(day, maxDays);
+            stack.push(new int[]{pes, day});
+        }
+        return maxDays;
+    }
+
 }
 
 public class PoisonousPlants {
@@ -55,7 +125,7 @@ public class PoisonousPlants {
                 .map(Integer::parseInt)
                 .collect(toList());
 
-        int result = Result.poisonousPlants(p);
+        int result = Result.poisonousPlants3(p);
 
         bufferedWriter.write(String.valueOf(result));
         bufferedWriter.newLine();
