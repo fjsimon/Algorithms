@@ -23,10 +23,11 @@ public class KSmallestUsingMorris {
         if (node == null) return create(key);
 
         /* Otherwise, recur down the tree */
-        if (key < node.key)
+        if (key < node.key) {
             node.left = insert(node.left, key);
-        else if (key > node.key)
+        } else if (key > node.key) {
             node.right = insert(node.right, key);
+        }
 
         /* return the (unchanged) node pointer */
         return node;
@@ -52,8 +53,9 @@ public class KSmallestUsingMorris {
 
                 // if count is equal to K then we found the
                 // kth smallest, so store it in ksmall
-                if (count == k)
+                if (count == k) {
                     ksmall = curr.key;
+                }
 
                 // go to current's right child
                 curr = curr.right;
@@ -61,8 +63,9 @@ public class KSmallestUsingMorris {
                 // we create links to Inorder Successor and
                 // count using these links
                 Node pre = curr.left;
-                while (pre.right != null && pre.right != curr)
+                while (pre.right != null && pre.right != curr) {
                     pre = pre.right;
+                }
 
                 // building links
                 if (pre.right == null) {
@@ -83,8 +86,9 @@ public class KSmallestUsingMorris {
 
                     // If count is equal to K then we found
                     // the kth smallest and so store it in ksmall
-                    if (count == k)
+                    if (count == k) {
                         ksmall = curr.key;
+                    }
 
                     curr = curr.right;
                 }
