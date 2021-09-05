@@ -97,11 +97,11 @@ public class KSmallestUsingMorris {
     public static void main(String[] args) {
 
         /* Let us create following BST
-                50
+               50
             /     \
-            30     70
-            / \ / \
-        20 40 60 80 */
+           30     70
+           / \   / \
+          20 40 60 80 */
         Node root = null;
         root = insert(root, 50);
         insert(root, 30);
