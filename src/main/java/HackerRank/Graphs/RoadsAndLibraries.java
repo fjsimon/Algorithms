@@ -21,6 +21,9 @@ class Result {
     public static long roadsAndLibraries(int n, int c_lib, int c_road, List<List<Integer>> cities) {
         // Write your code here
 
+        System.out.printf("%nn %d c_lib %d c_road %d %n", n, c_lib, c_road);
+        cities.forEach(c -> System.out.println(c));
+
         return 0;
     }
 
