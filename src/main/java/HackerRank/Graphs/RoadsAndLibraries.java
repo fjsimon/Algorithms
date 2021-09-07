@@ -5,6 +5,10 @@ import java.util.*;
 import java.util.stream.*;
 import static java.util.stream.Collectors.toList;
 
+/**
+ * https://www.hackerrank.com/challenges/torque-and-development/problem?
+ *  h_l=interview&playlist_slugs%5B%5D=interview-preparation-kit&playlist_slugs%5B%5D=graphs
+ */
 class Result {
 
     /*
