@@ -17,16 +17,41 @@ class Result {
      *  3. INTEGER c_road
      *  4. 2D_INTEGER_ARRAY cities
      */
-
     public static long roadsAndLibraries(int n, int c_lib, int c_road, List<List<Integer>> cities) {
-        // Write your code here
 
-        System.out.printf("%nn %d c_lib %d c_road %d %n", n, c_lib, c_road);
-        cities.forEach(c -> System.out.println(c));
+        if (c_lib <= c_road) {
+            return (long) c_lib * n;
+        }
 
-        return 0;
+        int[] arr = new int[n+1];
+        for (int i = 1; i <= n; i++) {
+            arr[i] = i;
+        }
+
+        for (List<Integer> road : cities) {
+            int a = road.get(0);
+            int b = road.get(1);
+            arr[root(a, arr)] = arr[root(b, arr)];
+        }
+
+        long cost = 0;
+        for (int i = 1; i < n+1; i++) {
+            if (arr[i] == i) {
+                cost += c_lib;
+            } else {
+                cost += c_road;
+            }
+        }
+
+        return cost;
     }
 
+    static int root(int n, int[] arr) {
+        while (arr[n] != n) {
+            n = arr[n];
+        }
+        return n;
+    }
 }
 
 public class RoadsAndLibraries {
