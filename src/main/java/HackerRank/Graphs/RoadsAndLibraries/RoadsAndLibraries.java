@@ -1,4 +1,4 @@
-package HackerRank.Graphs;
+package HackerRank.Graphs.RoadsAndLibraries;
 
 import java.io.*;
 import java.util.*;
