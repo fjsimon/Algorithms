@@ -18,6 +18,14 @@ public class FindNearestClone {
     static int findShortest(int graphNodes, int[] graphFrom, int[] graphTo, long[] ids, int val) {
         // solve here
 
+        System.out.println("graphNodes " + graphNodes);
+
+        Arrays.stream(graphFrom).forEach(System.out::println);
+        Arrays.stream(graphTo).forEach(System.out::println);
+        Arrays.stream(ids).forEach(System.out::println);
+
+        System.out.println("val " + val);
+
         return 0;
     }
 
