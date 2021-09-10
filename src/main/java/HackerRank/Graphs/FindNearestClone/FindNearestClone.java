@@ -3,30 +3,52 @@ package HackerRank.Graphs.FindNearestClone;
 import java.io.*;
 import java.util.*;
 
+/**
+ * https://www.hackerrank.com/challenges/find-the-nearest-clone/problem?h_l=interview&playlist_slugs%5B%5D=interview-preparation-kit&playlist_slugs%5B%5D=graphs
+ */
 public class FindNearestClone {
 
-    // Complete the findShortest function below.
-
-    /*
-     * For the unweighted graph, <name>:
-     *
-     * 1. The number of nodes is <name>Nodes.
-     * 2. The number of edges is <name>Edges.
-     * 3. An edge exists between <name>From[i] to <name>To[i].
-     *
-     */
     static int findShortest(int graphNodes, int[] graphFrom, int[] graphTo, long[] ids, int val) {
-        // solve here
 
-        System.out.println("graphNodes " + graphNodes);
+        List<Integer>[] map = new ArrayList[graphNodes];
+        HashMap<Integer, Integer> distances = new HashMap<>();
 
-        Arrays.stream(graphFrom).forEach(System.out::println);
-        Arrays.stream(graphTo).forEach(System.out::println);
-        Arrays.stream(ids).forEach(System.out::println);
+        for (int i = 0; i < graphNodes; i++) {
+            map[i] = new ArrayList<>();
+        }
 
-        System.out.println("val " + val);
+        for (int i = 0; i < graphFrom.length; i++) {
+            map[graphFrom[i] - 1].add(graphTo[i]);
+            map[graphTo[i] - 1].add(graphFrom[i]);
+        }
 
-        return 0;
+        Queue<Integer> queue = new LinkedList<>();
+        for (int i = 0; i < ids.length; i++) {
+            if (ids[i] == val) {
+                queue.add(i + 1);
+                distances.put(i + 1, 0);
+            }
+        }
+
+        if (queue.size() < 2)
+            return -1;
+
+        HashSet<Integer> visited = new HashSet<>();
+        while (!queue.isEmpty()) {
+            int current = queue.remove();
+            visited.add(current);
+            for (int a : map[current - 1]) {
+                if (distances.containsKey(a) && !visited.contains(a)) {
+                    return distances.get(a) + distances.get(current) + 1;
+                } else {
+                    queue.add(a);
+                    distances.put(a, distances.get(current) + 1);
+                }
+            }
+        }
+
+        return -1;
+
     }
 
     private static final Scanner scanner = new Scanner(System.in);
