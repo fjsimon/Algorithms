@@ -10,27 +10,9 @@ import static java.util.stream.Collectors.toList;
  */
 class Result {
 
-    /*
-     * Complete the 'minTime' function below.
-     *
-     * The function is expected to return an INTEGER.
-     * The function accepts following parameters:
-     *  1. 2D_INTEGER_ARRAY roads
-     *  2. INTEGER_ARRAY machines
-     */
     public static int minTime(List<List<Integer>> roads, List<Integer> machines) {
 
-        class RoadComparator implements Comparator<List<Integer>> {
-            @Override
-            public int compare(List<Integer> o1, List<Integer> o2) {
-                return o2.get(2) - o1.get(2);
-            }
-        }
-
-        Collections.sort(roads, new RoadComparator());
-
-//        Collections.sort(roads, (o1, o2) -> o2.get(2) - o1.get(2));
-
+        Collections.sort(roads, (o1, o2) -> o2.get(2) - o1.get(2));
 
         int ans = 0;
 
@@ -54,10 +36,11 @@ class Result {
                 continue;
             }
 
-            if (machineSet.contains(p1))
+            if (machineSet.contains(p1)) {
                 relation.set(p2, p1);
-            else
+            } else {
                 relation.set(p1, p2);
+            }
 
         }
 
@@ -74,8 +57,9 @@ class Result {
 
         int p = idToIndex.get(node);
 
-        while (p != relation.get(p))
+        while (p != relation.get(p)) {
             p = relation.get(p);
+        }
 
         return p;
     }
@@ -86,7 +70,7 @@ public class Matrix {
 
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-//        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
 
         String[] firstMultipleInput = bufferedReader.readLine().replaceAll("\\s+$", "").split(" ");
         int n = Integer.parseInt(firstMultipleInput[0]);
@@ -114,9 +98,9 @@ public class Matrix {
         int result = Result.minTime(roads, machines);
         System.out.println(result);
 
-//        bufferedWriter.write(String.valueOf(result));
-//        bufferedWriter.newLine();
+        bufferedWriter.write(String.valueOf(result));
+        bufferedWriter.newLine();
         bufferedReader.close();
-//        bufferedWriter.close();
+        bufferedWriter.close();
     }
 }
