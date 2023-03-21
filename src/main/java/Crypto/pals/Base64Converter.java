@@ -1,4 +1,4 @@
-package Crypto.pals.set1;
+package Crypto.pals;
 
 import org.apache.shiro.codec.Base64;
 import org.apache.shiro.codec.CodecSupport;

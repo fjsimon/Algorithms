@@ -1,9 +1,9 @@
-package Crypto.pals.set1;
+package Crypto.pals;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-class Base64ConverterTest {
+class Set1Test {
 
     @Test
     public void challenge1_HexToBase64() {
@@ -19,4 +19,11 @@ class Base64ConverterTest {
                 Base64Converter.toHexFrom("SSdtIGtpbGxpbmcgeW91ciBicmFpbiBsaWtlIGEgcG9pc29ub3VzIG11c2hyb29t"));
     }
 
+    @Test
+    public void challenge2() {
+
+        assertEquals("746865206b696420646f6e277420706c6179",
+                XOR.xorHex("1c0111001f010100061a024b53535009181c",
+                        "686974207468652062756c6c277320657965"));
+    }
 }
