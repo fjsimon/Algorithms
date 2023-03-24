@@ -1,6 +1,13 @@
 package Crypto.pals;
 
+import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class Set1Test {
@@ -32,5 +39,19 @@ class Set1Test {
 
         assertEquals("Cooking MC's like a pound of bacon",
                 SingleByteXORCipher.decodeOneCharacterXor("1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736"));
+    }
+
+    @Test
+    public void challenge4() {
+
+        List<String> lines = readFile();
+        String solution = "Now that the party is jumping\n";
+        assertEquals(solution, SingleByteXORCipher.detectOneCharacterXor(lines));
+
+    }
+
+    @SneakyThrows
+    public List<String> readFile() {
+        return Files.readAllLines(Paths.get("src/test/resources/set1ex4.txt"));
     }
 }
