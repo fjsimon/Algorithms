@@ -1,5 +1,6 @@
 package Crypto.pals;
 
+import org.apache.shiro.codec.CodecSupport;
 import org.apache.shiro.codec.Hex;
 
 public class XOR {
@@ -42,4 +43,9 @@ public class XOR {
         byte[] keyAsArray = new byte[] { (byte) key};
         return xor(input, keyAsArray);
     }
+
+    public static String xorThem(String cipher, String key) {
+        return Hex.encodeToString(XOR.xor(CodecSupport.toBytes(cipher), CodecSupport.toBytes(key)));
+    }
+
 }
