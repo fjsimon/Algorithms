@@ -3,7 +3,6 @@ package Crypto.pals;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
@@ -46,7 +45,7 @@ class Set1Test {
     @Test
     public void challenge4() {
 
-        List<String> lines = readFile();
+        List<String> lines = readFileSet1Ex4();
         String solution = "Now that the party is jumping\n";
         assertEquals(solution, SingleByteXORCipher.detectOneCharacterXor(lines));
 
@@ -146,7 +145,7 @@ class Set1Test {
     }
 
     @SneakyThrows
-    public List<String> readFile() {
+    public List<String> readFileSet1Ex4() {
         return Files.readAllLines(Paths.get("src/test/resources/set1ex4.txt"));
     }
 
