@@ -141,9 +141,39 @@ class Set1Test {
                 "Play that funky music, white boy Come on, Come on, Come on \n" +
                 "Play that funky music \n";
 
-        String decode = CodecSupport.toString(Hamming.decode(Base64.decode(readFileSet1Ex6())));
+        byte[] rawCipher = Base64.decode(readFileSet1Ex6());
+        int keySize = getKeySize(rawCipher);
+        String decode = CodecSupport.toString(Hamming.decode(rawCipher, keySize));
         assertEquals(expected, decode);
 
+    }
+
+    private static int getKeySize(byte[] rawCipher) {
+        double minDistance = Double.MAX_VALUE;
+        int keySize = -1;
+
+        for (int guessedKeySize = 2; guessedKeySize <= 40; guessedKeySize++) {
+            int blocksCount = rawCipher.length / guessedKeySize - 1;
+            double totalDistance = 0;
+            for (int basedOnBlock = 0; basedOnBlock < blocksCount; basedOnBlock++) {
+
+                byte[] firstBlock = ArrayManipulations.extractBlock(rawCipher, guessedKeySize, basedOnBlock);
+                byte[] secondBlock = ArrayManipulations.extractBlock(rawCipher, guessedKeySize, basedOnBlock + 1);
+
+                int distance = Hamming.distance(firstBlock, secondBlock);
+                int maxLength = Math.max(firstBlock.length, secondBlock.length);
+
+                totalDistance += (double) distance / (double) maxLength;
+
+            }
+
+            double averageDistance = totalDistance / blocksCount;
+            if (minDistance > averageDistance) {
+                minDistance = averageDistance;
+                keySize = guessedKeySize;
+            }
+        }
+        return keySize;
     }
 
     @SneakyThrows
