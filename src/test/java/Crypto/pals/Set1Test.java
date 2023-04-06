@@ -1,6 +1,8 @@
 package Crypto.pals;
 
 import lombok.SneakyThrows;
+import org.apache.shiro.codec.Base64;
+import org.apache.shiro.codec.CodecSupport;
 import org.junit.jupiter.api.Test;
 
 import java.nio.file.Files;
@@ -72,7 +74,6 @@ class Set1Test {
     @Test
     public void challenge6() {
 
-        String fileString = readFileSet1Ex6();
         String expected = "I'm back and I'm ringin' the bell \n" +
                 "A rockin' on the mike while the fly girls yell \n" +
                 "In ecstasy in the back of me \n" +
@@ -140,7 +141,8 @@ class Set1Test {
                 "Play that funky music, white boy Come on, Come on, Come on \n" +
                 "Play that funky music \n";
 
-        assertEquals(expected, Hamming.breakMultipleTimePad(fileString));
+        String decode = CodecSupport.toString(Hamming.decode(Base64.decode(readFileSet1Ex6())));
+        assertEquals(expected, decode);
 
     }
 
