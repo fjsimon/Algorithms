@@ -143,7 +143,7 @@ class Set1Test {
 
         byte[] rawCipher = Base64.decode(readFileSet1Ex6());
         int keySize = getKeySize(rawCipher);
-        String decode = CodecSupport.toString(Hamming.decode(rawCipher, keySize));
+        String decode = CodecSupport.toString(SingleByteXORCipher.decode(rawCipher, keySize));
         assertEquals(expected, decode);
 
     }
