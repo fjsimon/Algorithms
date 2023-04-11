@@ -1,7 +1,6 @@
 package Crypto.pals;
 
 import org.apache.shiro.codec.CodecSupport;
-import java.util.Arrays;
 
 class Hamming {
     // function to calculate Hamming distance
@@ -22,22 +21,6 @@ class Hamming {
         result += 8 * (maxLength - minLength);
 
         return result;
-    }
-
-    public  static byte[] decode(byte[] cipher, int keyLength) {
-        byte[] transposedCipher = ArrayManipulations.transpose(cipher, keyLength);
-        int transposedBlockLength = ArrayManipulations.transposedBlockLength(cipher, keyLength);
-
-        byte[] joinedSolvedBlocks = new byte[transposedCipher.length];
-        for (int index = 0; index * transposedBlockLength < transposedCipher.length; index++) {
-            byte[] block = ArrayManipulations.extractBlock(transposedCipher, transposedBlockLength, index);
-            DecodedResult decodedResult = SingleByteXORCipher.decodeAssumeOneLetterLongKey(block);
-            ArrayManipulations.replaceBlock(joinedSolvedBlocks, decodedResult.getFirst(), index);
-        }
-
-        byte[] decoded = ArrayManipulations.transpose(joinedSolvedBlocks, transposedBlockLength);
-        decoded = Arrays.copyOf(decoded, cipher.length);
-        return decoded;
     }
 }
 

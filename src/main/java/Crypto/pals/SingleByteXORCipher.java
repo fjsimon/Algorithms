@@ -3,11 +3,12 @@ package Crypto.pals;
 import org.apache.shiro.codec.CodecSupport;
 import org.apache.shiro.codec.Hex;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class SingleByteXORCipher {
-    private static char keyMinimum = 0;
-    private static char keyMaximum = 255;
+    private static final char KEY_MINIMUM = 0;
+    private static final char KEY_MAXIMUM = 255;
 
     public static String decodeOneCharacterXor(String hex) {
         DecodedResult result = decodeAssumeOneLetterLongKey(Hex.decode(hex));
@@ -35,7 +36,7 @@ public class SingleByteXORCipher {
     public static DecodedResult decodeAssumeOneLetterLongKey(byte[] raw) {
         DecodedResult result = new DecodedResult(-1);
 
-        for (char guess = keyMinimum; guess < keyMaximum; guess++) {
+        for (char guess = KEY_MINIMUM; guess < KEY_MAXIMUM; guess++) {
             byte[] decoded = XOR.xor(raw, guess);
 
             int score = ASCII.countCharacters(decoded);
@@ -48,5 +49,21 @@ public class SingleByteXORCipher {
             }
         }
         return result;
+    }
+
+    public  static byte[] decode(byte[] cipher, int keyLength) {
+        byte[] transposedCipher = ArrayManipulations.transpose(cipher, keyLength);
+        int transposedBlockLength = ArrayManipulations.transposedBlockLength(cipher, keyLength);
+
+        byte[] joinedSolvedBlocks = new byte[transposedCipher.length];
+        for (int index = 0; index * transposedBlockLength < transposedCipher.length; index++) {
+            byte[] block = ArrayManipulations.extractBlock(transposedCipher, transposedBlockLength, index);
+            DecodedResult decodedResult = SingleByteXORCipher.decodeAssumeOneLetterLongKey(block);
+            ArrayManipulations.replaceBlock(joinedSolvedBlocks, decodedResult.getFirst(), index);
+        }
+
+        byte[] decoded = ArrayManipulations.transpose(joinedSolvedBlocks, transposedBlockLength);
+        decoded = Arrays.copyOf(decoded, cipher.length);
+        return decoded;
     }
 }
