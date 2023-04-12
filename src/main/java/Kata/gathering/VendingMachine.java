@@ -8,8 +8,9 @@ import Kata.gathering.exceptions.NotFoundException;
 import Kata.gathering.states.VendingMachineState;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import lombok.Getter;
 import lombok.experimental.Accessors;
-import lombok.experimental.Delegate;
+
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -24,8 +25,8 @@ public class VendingMachine {
 
     private final int shelfCount;
 
-    @Delegate
-    private Wallet wallet = new Wallet();
+    @Getter
+    public Wallet wallet = new Wallet();
 
     @Setter
     private VendingMachineState state;
@@ -89,8 +90,8 @@ public class VendingMachine {
             if (productMap.containsKey(i) && productMap.get(i).size() > 0) {
                 ProductStack productStack = productMap.get(i);
                 display("%s -> %s (%s PLN) x%s\n", i,
-                        productStack.getName(),
-                        productStack.getPrice(),
+                        productStack.getProduct().getName(),
+                        productStack.getProduct().getPrice(),
                         productStack.size());
             } else {
                 display("%s -> empty\n", i);

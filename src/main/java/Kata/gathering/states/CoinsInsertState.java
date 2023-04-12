@@ -39,7 +39,7 @@ public class CoinsInsertState implements VendingMachineState {
         Optional<Money> insertedCoin = Money.fromDenomination(input);
         if (insertedCoin.isPresent()) {
             insertedAmount = insertedAmount.add(insertedCoin.get().getMoneyValue());
-            vendingMachine.putCoin(insertedCoin.get());
+            vendingMachine.getWallet().putCoin(insertedCoin.get());
 
             if (insertedAmount.compareTo(selectedProduct.getPrice()) == 0) {
                 vendingMachine.setState(new ProvideProductState(selectedShelfNumber));

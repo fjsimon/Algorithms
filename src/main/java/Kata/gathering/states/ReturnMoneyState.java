@@ -12,7 +12,7 @@ public class ReturnMoneyState implements VendingMachineState {
 
     @Override
     public void proceed(VendingMachine vendingMachine) {
-        vendingMachine.removeValueInCoins(returnAmount);
+        vendingMachine.getWallet().removeValueInCoins(returnAmount);
         vendingMachine.display("Please take back your money, come back soon\n");
         vendingMachine.setState(new ProductSelectState()).proceed();
     }

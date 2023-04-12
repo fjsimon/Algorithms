@@ -19,8 +19,8 @@ public class ChangeCheckState implements VendingMachineState {
                 .orElseThrow(() -> new IllegalStateException("Product not found on shelf number " + selectedShelfNumber));
 
         BigDecimal changeValue = insertedAmount.subtract(selectedProduct.getPrice());
-        if (vendingMachine.calculator().hasMoneyMapForValue(changeValue)) {
-            vendingMachine.removeValueInCoins(changeValue);
+        if (vendingMachine.getWallet().calculator().hasMoneyMapForValue(changeValue)) {
+            vendingMachine.getWallet().removeValueInCoins(changeValue);
             vendingMachine.display("Please take your change %s PLN\n", changeValue);
             vendingMachine.setState(new ProvideProductState(selectedShelfNumber)).proceed();
         } else {
