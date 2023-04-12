@@ -87,7 +87,7 @@ public class VendingMachine {
         display("Money in machine: %s PLN\n", wallet.calculator().getMoneyMapValue());
 
         for (int i = 1; i <= shelfCount; i++) {
-            if (productMap.containsKey(i) && productMap.get(i).size() > 0) {
+            if (productMap.containsKey(i) && !productMap.get(i).isEmpty()) {
                 ProductStack productStack = productMap.get(i);
                 display("%s -> %s (%s PLN) x%s\n", i,
                         productStack.getProduct().getName(),
