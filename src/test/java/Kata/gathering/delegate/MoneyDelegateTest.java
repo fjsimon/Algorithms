@@ -22,7 +22,7 @@ class MoneyDelegateTest {
         coinCountMap.put(Money.TWO_EUROS, 1);
         coinCountMap.put(Money.ONE_EURO, 5);
         coinCountMap.put(Money.FIFTY_CENTS, 7);
-        coinCountMap.put(Money.ONE_CENT, 10);
+        coinCountMap.put(Money.ONE_CENT, 20);
 
         assertThat(new MoneyDelegate(coinCountMap).hasMoneyMapForValue(new BigDecimal("12")), is(false));
     }
