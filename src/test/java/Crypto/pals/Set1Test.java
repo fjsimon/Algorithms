@@ -116,11 +116,13 @@ class Set1Test {
                 "Movin' and groovin' trying to sing along \n" +
                 "All through the ghetto groovin' this here song \n" +
                 "Now you're amazed by the VIP posse. \n\n" +
-                "Steppin' so hard like a German Nazi \nStartled by the bases hittin' ground \n" +
+                "Steppin' so hard like a German Nazi \n"+ 
+                "Startled by the bases hittin' ground \n" +
                 "There's no trippin' on mine, I'm just gettin' down \n" +
                 "Sparkamatic, I'm hangin' tight like a fanatic \n" +
                 "You trapped me once and I thought that \n" +
-                "You might have it \nSo step down and lend me your ear \n" +
+                "You might have it \n" + 
+                "So step down and lend me your ear \n" +
                 "'89 in my time! You, '90 is my year. \n\n" +
                 "You're weakenin' fast, YO! and I can tell it \n" +
                 "Your body's gettin' hot, so, so I can smell it \n" +
