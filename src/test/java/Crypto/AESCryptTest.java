@@ -14,7 +14,7 @@ public class AESCryptTest {
     @Test
     public void aes_test_encrypt() throws Exception {
 
-        AESCrypt aes = new AESCrypt("k33p1TS3cret");
+        AESCrypt aes = new AESCrypt("k33p1TS3cre7");
 
         String source = "This is my secret.";
         InputStream inputStream = new ByteArrayInputStream(source.getBytes(StandardCharsets.UTF_8.name()));
