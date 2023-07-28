@@ -22,7 +22,6 @@ public class ProductStack extends Stack<Product> {
 
     @Delegate
     @Getter
-    @Setter
     private final Product product;
 
 }
