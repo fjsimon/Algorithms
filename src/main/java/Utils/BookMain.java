@@ -23,17 +23,17 @@ public class BookMain {
 
     public static void main(String[] args) throws JAXBException, IOException {
 
-        var bookList = new ArrayList<Book>();
+        List<Book> bookList = new ArrayList<Book>();
 
         // create books
-        var book1 = new Book();
+        Book book1 = new Book();
         book1.setIsbn("978-0060554736");
         book1.setName("The Game");
         book1.setAuthor("Neil Strauss");
         book1.setPublisher("Harpercollins");
         bookList.add(book1);
 
-        var book2 = new Book();
+        Book book2 = new Book();
         book2.setIsbn("978-3832180577");
         book2.setName("Feuchtgebiete");
         book2.setAuthor("Charlotte Roche");
@@ -41,7 +41,7 @@ public class BookMain {
         bookList.add(book2);
 
         // create bookstore, assigning book
-        var bookstore = new Bookstore();
+        Bookstore bookstore = new Bookstore();
         bookstore.setName("Fraport Bookstore");
         bookstore.setLocation("Frankfurt Airport");
         bookstore.setBookList(bookList);

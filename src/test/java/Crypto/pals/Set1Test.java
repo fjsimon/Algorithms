@@ -185,6 +185,6 @@ class Set1Test {
 
     @SneakyThrows
     public String readFileSet1Ex6() {
-        return Files.readString(Paths.get("src/test/resources/set1ex6.txt"));
+        return new String(Files.readAllBytes(Paths.get("src/test/resources/set1ex6.txt")));
     }
 }

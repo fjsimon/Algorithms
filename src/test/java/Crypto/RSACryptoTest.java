@@ -7,7 +7,6 @@ import javax.crypto.Cipher;
 import java.io.FileOutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Base64;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -30,7 +29,9 @@ class RSACryptoTest {
     public void rsa_text_files_test() {
 
         Path tempFile = Files.createTempFile("temp", "txt");
-        Files.writeString(tempFile, "Keep It For You");
+            
+        Files.write(tempFile, "Keep It For You".getBytes());
+
         byte[] fileBytes = Files.readAllBytes(tempFile);
 
         Cipher encryptCipher = Cipher.getInstance("RSA");
@@ -52,7 +53,7 @@ class RSACryptoTest {
             stream.write(decryptedFileBytes);
         }
 
-        String fileContent = Files.readString(tempFile);
+        String fileContent =  new String(Files.readAllBytes(tempFile));        
         assertThat("Keep It For You", is(fileContent));
     }
 
