@@ -1,7 +1,5 @@
 package Crypto;
 
-import lombok.SneakyThrows;
-
 import javax.crypto.Cipher;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -14,9 +12,8 @@ import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
 
 public class RSACrypto {
-
-    @SneakyThrows
-    public static void generateKeys() {
+   
+    public static void generateKeys() throws Exception {
 
         KeyPairGenerator generator = KeyPairGenerator.getInstance("RSA");
         generator.initialize(2048);
@@ -34,8 +31,7 @@ public class RSACrypto {
         }
     }
 
-    @SneakyThrows
-    public static PublicKey getPublicKey() {
+    public static PublicKey getPublicKey() throws Exception {
 
         File publicKeyFile = new File("public.key");
         byte[] publicKeyBytes = Files.readAllBytes(publicKeyFile.toPath());
@@ -44,8 +40,7 @@ public class RSACrypto {
         return keyFactory.generatePublic(publicKeySpec);
     }
 
-    @SneakyThrows
-    public static PrivateKey getPrivateKey() {
+    public static PrivateKey getPrivateKey() throws Exception {
 
         File privateKeyFile = new File("private.key");
         byte[] privateKeyBytes = Files.readAllBytes(privateKeyFile.toPath());
@@ -54,8 +49,7 @@ public class RSACrypto {
         return keyFactory.generatePrivate(privateKeySpec);
     }
 
-    @SneakyThrows
-    public static String encrypt(String secretMessage) {
+    public static String encrypt(String secretMessage) throws Exception {
 
         Cipher encryptCipher = Cipher.getInstance("RSA");
         encryptCipher.init(Cipher.ENCRYPT_MODE, getPublicKey());
@@ -64,9 +58,8 @@ public class RSACrypto {
         String encryptedMessage = Base64.getEncoder().encodeToString(encryptedMessageBytes);
         return encryptedMessage;
     }
-
-    @SneakyThrows
-    public static String decrypt(String encryptedMessage) {
+   
+    public static String decrypt(String encryptedMessage) throws Exception {
 
         Cipher decryptCipher = Cipher.getInstance("RSA");
         decryptCipher.init(Cipher.DECRYPT_MODE, getPrivateKey());

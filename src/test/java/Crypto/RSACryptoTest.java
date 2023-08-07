@@ -1,6 +1,5 @@
 package Crypto;
 
-import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 
 import javax.crypto.Cipher;
@@ -13,8 +12,8 @@ import static org.hamcrest.Matchers.is;
 
 class RSACryptoTest {
 
-    @Test
-    public void rsa_text_message_test() {
+    @Test   
+    public void rsa_text_message_test() throws Exception{
 
         RSACrypto.generateKeys();
 
@@ -24,9 +23,8 @@ class RSACryptoTest {
         assertThat(secretMessage, is(decryptedMsg));
     }
 
-    @Test
-    @SneakyThrows
-    public void rsa_text_files_test() {
+    @Test    
+    public void rsa_text_files_test() throws Exception {
 
         Path tempFile = Files.createTempFile("temp", "txt");
             

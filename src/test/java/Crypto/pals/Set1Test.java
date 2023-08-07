@@ -47,7 +47,7 @@ class Set1Test {
     }
 
     @Test
-    public void challenge4() {
+    public void challenge4() throws Exception{
 
         List<String> lines = readFileSet1Ex4();
         String solution = "Now that the party is jumping\n";
@@ -75,7 +75,7 @@ class Set1Test {
     }
 
     @Test
-    public void challenge6() {
+    public void challenge6() throws Exception {
 
         String expected = "I'm back and I'm ringin' the bell \n" +
                 "A rockin' on the mike while the fly girls yell \n" +
@@ -154,7 +154,7 @@ class Set1Test {
     }
 
     @Test
-    public void challenge7() {
+    public void challenge7() throws Exception {
 
         String expected = "I'm back and I'm ringin' the bell \n" +
                 "A rockin' on the mike while the fly girls yell \n" +
@@ -264,17 +264,17 @@ class Set1Test {
     }
 
     @SneakyThrows
-    public List<String> readFileSet1Ex4() {
+    public List<String> readFileSet1Ex4() throws Exception {
         return Files.readAllLines(Paths.get("src/test/resources/set1ex4.txt"));
     }
 
     @SneakyThrows
-    public String readFileSet1Ex6() {
+    public String readFileSet1Ex6() throws Exception {
         return new String(Files.readAllBytes(Paths.get("src/test/resources/set1ex6.txt")));
     }
 
     @SneakyThrows
-    public String readFileSet1Ex7() {
+    public String readFileSet1Ex7() throws Exception {
         return new String(Files.readAllBytes(Paths.get("src/test/resources/set1ex7.txt")));
     }
 }
