@@ -1,6 +1,5 @@
 package Crypto.pals;
 
-import lombok.SneakyThrows;
 import org.apache.shiro.codec.Base64;
 import org.apache.shiro.codec.CodecSupport;
 import org.junit.jupiter.api.Test;
@@ -263,17 +262,14 @@ class Set1Test {
         return keySize;
     }
 
-    @SneakyThrows
     public List<String> readFileSet1Ex4() throws Exception {
         return Files.readAllLines(Paths.get("src/test/resources/set1ex4.txt"));
     }
 
-    @SneakyThrows
     public String readFileSet1Ex6() throws Exception {
         return new String(Files.readAllBytes(Paths.get("src/test/resources/set1ex6.txt")));
     }
 
-    @SneakyThrows
     public String readFileSet1Ex7() throws Exception {
         return new String(Files.readAllBytes(Paths.get("src/test/resources/set1ex7.txt")));
     }
