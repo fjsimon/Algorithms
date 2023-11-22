@@ -42,12 +42,7 @@ public class ShoppingCart {
             double quantity = productQuantities.get(p);
             if (offers.containsKey(p)) {
 
-                Request request = Request.builder()
-                        .offer(offers.get(p))
-                        .unitPrice(catalog.getUnitPrice(p))
-                        .quantity(quantity)
-                        .build();
-
+                Request request = new Request(offers.get(p), catalog.getUnitPrice(p), quantity);
                 for( OfferChecker offerChecker : offerCheckerList ) {
                     offerChecker.check(receipt, request);
                 }

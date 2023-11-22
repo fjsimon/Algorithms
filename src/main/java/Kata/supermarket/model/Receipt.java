@@ -1,12 +1,8 @@
 package Kata.supermarket.model;
 
-
-import lombok.Getter;
-
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter
 public class Receipt {
 
     private List<ReceiptItem> items = new ArrayList<>();
@@ -31,4 +27,11 @@ public class Receipt {
         this.discounts.add(discount);
     }
 
+    public List<ReceiptItem> getItems() {
+        return items;
+    }
+
+    public List<Discount> getDiscounts() {
+        return discounts;
+    }
 }
