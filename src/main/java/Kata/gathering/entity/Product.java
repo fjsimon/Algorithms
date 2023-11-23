@@ -1,13 +1,7 @@
 package Kata.gathering.entity;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-
 import java.math.BigDecimal;
 
-@Getter
-@RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 public enum Product {
 
     COKE("Coke 0.33L", new BigDecimal("2.50")),
@@ -21,4 +15,17 @@ public enum Product {
     private final String name;
     private final BigDecimal price;
 
+    Product(String name, BigDecimal price) {
+
+        this.name = name;
+        this.price = price;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
 }

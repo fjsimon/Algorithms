@@ -6,11 +6,6 @@ import Kata.gathering.entity.Wallet;
 import Kata.gathering.exceptions.ItemNotSelectedException;
 import Kata.gathering.exceptions.NotFoundException;
 import Kata.gathering.states.VendingMachineState;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import lombok.Getter;
-import lombok.experimental.Accessors;
-
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -19,19 +14,24 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-@Accessors(chain = true)
-@RequiredArgsConstructor
 public class VendingMachine {
 
     private final int shelfCount;
-
-    @Getter
     public Wallet wallet = new Wallet();
-
-    @Setter
     private VendingMachineState state;
-
     private Map<Integer, ProductStack> productMap = new HashMap<>();
+    public VendingMachine(int shelfCount) {
+        this.shelfCount = shelfCount;
+    }
+
+    public VendingMachine setState(VendingMachineState state){
+        this.state = state;
+        return this;
+    }
+
+    public Wallet getWallet() {
+        return this.wallet;
+    }
 
     public void start(VendingMachineState state) {
 
@@ -114,7 +114,7 @@ public class VendingMachine {
 
     public void display(String messageTemplate, Object... args) {
 
-        System.out.print(String.format(messageTemplate, args));
+        System.out.printf(messageTemplate, args);
     }
 
     private int readNumber() {

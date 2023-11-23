@@ -1,14 +1,17 @@
 package Kata.gathering.states;
 
 import Kata.gathering.VendingMachine;
-import lombok.RequiredArgsConstructor;
 
 import java.math.BigDecimal;
 
-@RequiredArgsConstructor
 public class ReturnMoneyState implements VendingMachineState {
 
     private final BigDecimal returnAmount;
+
+    public ReturnMoneyState(BigDecimal returnAmount) {
+
+        this.returnAmount = returnAmount;
+    }
 
     @Override
     public void proceed(VendingMachine vendingMachine) {

@@ -4,7 +4,6 @@ import Kata.gathering.VendingMachine;
 import Kata.gathering.entity.Money;
 import Kata.gathering.entity.Product;
 import Kata.gathering.exceptions.CoinNotAcceptedException;
-import lombok.RequiredArgsConstructor;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -12,15 +11,18 @@ import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.util.Optional;
 
-@RequiredArgsConstructor
 public class CoinsInsertState implements VendingMachineState {
 
     private static final String ABORT = "c";
-
     private final int selectedShelfNumber;
     private final Product selectedProduct;
     private BigDecimal insertedAmount = BigDecimal.ZERO;
 
+    public CoinsInsertState(int selectedShelfNumber, Product selectedProduct) {
+
+        this.selectedShelfNumber = selectedShelfNumber;
+        this.selectedProduct = selectedProduct;
+    }
     @Override
     public void proceed(VendingMachine vendingMachine) {
 

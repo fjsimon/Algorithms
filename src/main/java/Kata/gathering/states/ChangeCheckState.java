@@ -3,15 +3,19 @@ package Kata.gathering.states;
 import Kata.gathering.VendingMachine;
 import Kata.gathering.entity.Product;
 import Kata.gathering.exceptions.NoChangeException;
-import lombok.RequiredArgsConstructor;
 
 import java.math.BigDecimal;
 
-@RequiredArgsConstructor
 public class ChangeCheckState implements VendingMachineState {
 
     private final BigDecimal insertedAmount;
     private final int selectedShelfNumber;
+
+    public ChangeCheckState(BigDecimal insertedAmount, int selectedShelfNumber) {
+
+        this.insertedAmount = insertedAmount;
+        this.selectedShelfNumber = selectedShelfNumber;
+    }
 
     @Override
     public void proceed(VendingMachine vendingMachine) {

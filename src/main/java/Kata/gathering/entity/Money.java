@@ -1,16 +1,11 @@
 package Kata.gathering.entity;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang.math.NumberUtils;
 
 import java.math.BigDecimal;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-@Getter
-@RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 public enum Money {
 
     TWENTY_EUROS(new BigDecimal("20")),
@@ -26,6 +21,11 @@ public enum Money {
 
     private final BigDecimal moneyValue;
 
+    Money(BigDecimal moneyValue) {
+
+        this.moneyValue = moneyValue;
+    }
+
     public static Optional<Money> fromDenomination(String value) {
 
         if(!NumberUtils.isNumber(value))
@@ -34,5 +34,9 @@ public enum Money {
         return Stream.of(values())
                 .filter(c -> c.moneyValue.compareTo(new BigDecimal(value)) == 0 )
                 .findFirst();
+    }
+
+    public BigDecimal getMoneyValue() {
+        return moneyValue;
     }
 }
