@@ -53,8 +53,8 @@ public class PasswordArgon2Jvm {
                 ));
 	}
     
-    private static void test2() {
-        String password = "Hello World!";
+    private static void test2() {       
+        char[] password = "Hello World!".toCharArray();
         Instant beginHash = Instant.now();
 
         Argon2 argon2 = Argon2Factory.create(Argon2Types.ARGON2id);
