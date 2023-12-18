@@ -1,7 +1,6 @@
 package Crypto.pals;
 
 import org.apache.shiro.codec.Base64;
-import org.apache.shiro.codec.CodecSupport;
 import org.apache.shiro.codec.Hex;
 
 public class Base64Converter {
