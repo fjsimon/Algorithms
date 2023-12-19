@@ -1,7 +1,7 @@
 package HackerRank.CrackingTheCodingInterview.Algorithms;
 
 
-public class IceCream implements Comparable {
+public class IceCream implements Comparable<Object> {
 
     public int cost;
     public int id;

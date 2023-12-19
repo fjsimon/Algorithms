@@ -10,7 +10,7 @@ public class DPCoinChange {
 
     // Complete the ways function below.
     static long ways(int n, int[] coins) {
-        return makeChange(coins, n, 0, new HashMap());
+        return makeChange(coins, n, 0, new HashMap<String, Long>());
     }
 
     public static long makeChange(int[] coins, int money, int index, HashMap<String, Long> memo) {

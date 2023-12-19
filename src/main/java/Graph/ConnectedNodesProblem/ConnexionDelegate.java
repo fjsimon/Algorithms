@@ -13,7 +13,7 @@ public class ConnexionDelegate {
             Node node = getNext(list);
             node.setVisited(true);
 
-            List temp = new ArrayList();
+            List<Node> temp = new ArrayList<Node>();
             temp.add(node);
 
             int tempCount = findConnexionsRecursion(new Integer(1), temp, list);
