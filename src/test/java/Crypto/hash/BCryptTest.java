@@ -35,7 +35,7 @@ public class BCryptTest {
     @Test
     public void bcrypt_test() {
 
-        List<String> hashList = new ArrayList();
+        List<String> hashList = new ArrayList<String>();
 
         int i = 0;
         do {

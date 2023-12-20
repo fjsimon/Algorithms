@@ -35,7 +35,7 @@ public class UtilidadesXPath {
 		
         try {
 
-            Document doc = UtilidadesXML.File2Document("resources/books2.xml");
+            Document doc = UtilidadesXML.File2Document("src/test/resources/bookstore-jaxb.xml");
             
             XPath xpath = XPathFactory.newInstance().newXPath();   
             NodeList nodes = (NodeList) xpath.evaluate(expression, doc.getDocumentElement(), XPathConstants.NODESET);
