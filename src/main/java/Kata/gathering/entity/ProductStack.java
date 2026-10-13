@@ -4,7 +4,9 @@ import java.util.Stack;
 
 public class ProductStack extends Stack<Product> {
 
-    public static ProductStack of(Product product, int count) {
+    private static final long serialVersionUID = 001L;
+
+	public static ProductStack of(Product product, int count) {
 
         ProductStack productStack = new ProductStack(product);
         for (int i = 0; i < count; i++) {
